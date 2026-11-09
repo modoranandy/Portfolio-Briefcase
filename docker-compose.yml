@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # Servicio Backend (Laravel / PHP)
   laravel-app:
     image: php:8.2-fpm
     container_name: portfolio_laravel
@@ -13,9 +12,8 @@ services:
       - "8000:8000"
     command: php artisan serve --host=0.0.0.0 --port=8000
 
-  # Servicio Frontend (Angular / Node)
   angular-app:
-    image: node:20-alpine
+    image: node:22-alpine
     container_name: portfolio_angular
     restart: unless-stopped
     working_dir: /app
