@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   laravel-app:
-    image: php:8.2-fpm
-    container_name: portfolio_laravel
+    image: php:8.5-cli
+    container_name: backend
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:
@@ -14,11 +12,11 @@ services:
 
   angular-app:
     image: node:22-alpine
-    container_name: portfolio_angular
+    container_name: frontend
     restart: unless-stopped
     working_dir: /app
     volumes:
       - ./frontend:/app
     ports:
       - "4200:4200"
-    command: npm start
+    command: npx ng serve --host 0.0.0.0 --poll 2000
