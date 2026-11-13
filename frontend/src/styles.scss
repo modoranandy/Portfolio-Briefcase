@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;500;700&display=swap');
+
+:root {
+  --bg-base: #09050e; /* Negro con un toque ínfimo de morado */
+  --bg-surface: #130a20; /* Morado muy oscuro para las tarjetas */
+  --primary: #7b2cbf; /* Morado fuerte */
+  --accent: #c77dff; /* Violetilla claro/neón */
+  --text-main: #f8f9fa;
+  --text-muted: #a39eb5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
