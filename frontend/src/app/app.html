@@ -1,66 +1,90 @@
-<!-- src/app/app.component.html -->
+<!-- HEADER Sencillo -->
+<header class="navbar">
+  <div class="logo">&lt;AM/&gt;</div>
+  <nav>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#stack">Stack</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
 <main class="portfolio-container">
   
-  <!-- HERO SECTION -->
+  <!-- BLOQUE 1: HERO (Texto izq + Consola der) -->
   <section class="hero">
-    <div class="hero-content">
-      <h1 class="glitch-title">Andy Modoran</h1>
-      <h2 class="subtitle">Full-Stack Web Developer & AI/Big Data Student</h2>
-      
+    <div class="hero-left">
+      <h1 class="glitch-title">{{ nombre }}</h1>
+      <h2 class="subtitle">{{ rol }}</h2>
       <div class="intro-box">
-        <p class="es">🇪🇸 ¡Hola! Apasionado por entender los sistemas desde los cimientos. Me gusta mancharme las manos con código, montar arquitecturas sólidas y aprender constantemente, ya sea por necesidad del proyecto o por pura curiosidad tecnológica.</p>
-        <p class="en">🇬🇧 Hi! Passionate about understanding systems from the ground up. I love getting my hands dirty with code, building solid architectures, and constantly learning—whether a project demands it or just out of pure tech curiosity.</p>
+        <p>¡Hola! Soy Desarrollador Web Full-Stack (Técnico Superior en DAW) y actualmente curso la Especialización en Inteligencia Artificial y Big Data. Me apasiona entender los sistemas desde los cimientos, crear soluciones eficientes y meter las manos en el código hasta que todo rinda al máximo nivel.</p>
       </div>
     </div>
 
-    <!-- CUADRO DE CÓDIGO ANIMADO (Puro CSS) -->
-    <div class="code-window">
-      <div class="window-header">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-      </div>
-      <div class="window-body">
-        <div class="typewriter">
-          <p>const andy = new Developer();</p>
-          <p>andy.learn('AI & Big Data');</p>
-          <p class="anim-line">> Status: Ready to build 🚀_</p>
+    <div class="hero-right">
+      <div class="code-window">
+        <div class="window-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="window-body">
+          <!-- El texto muta gracias al TS -->
+          <p class="anim-line">{{ terminalText }}<span class="cursor">_</span></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS SECTION -->
-  <section class="projects">
+  <!-- BLOQUE 2: PROYECTOS -->
+  <section id="proyectos" class="proyectos">
     <h2 class="section-title">Proyectos Destacados</h2>
-    <div class="grid">
+    <div class="grid-proyectos">
       <div class="card" *ngFor="let p of proyectos">
         <h3>{{ p.nombre }}</h3>
         <p>{{ p.desc }}</p>
-        <div class="tags">
-          <span class="tag" *ngFor="let t of p.tech">{{ t }}</span>
+        <a *ngIf="p.url !== '#'" [href]="p.url" target="_blank" class="card-link">Ver Proyecto ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 3: STACK TECNOLÓGICO (Flip Cards) -->
+  <section id="stack" class="stack">
+    <h2 class="section-title">Stack Tecnológico</h2>
+    <div class="grid-stack">
+      <div class="flip-card" *ngFor="let tech of stack">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span>{{ tech.nombre }}</span>
+          </div>
+          <!-- Se asigna la clase verde, amarillo o rojo dinámicamente -->
+          <div class="flip-card-back" [ngClass]="tech.nivel">
+            <span class="nivel-texto">{{ tech.texto }}</span>
+          </div>
         </div>
-        <a [href]="p.url" target="_blank" class="card-link">Ver Proyecto ↗</a>
       </div>
     </div>
   </section>
 
-  <!-- STACK & CONTACT SECTION -->
-  <section class="bottom-section">
-    <div class="stack-container">
-      <h2 class="section-title">Tech Stack</h2>
-      <div class="pills">
-        <span class="pill" *ngFor="let tech of stack">{{ tech }}</span>
+  <!-- BLOQUE 4: EXPERIENCIA Y FORMACIÓN -->
+  <section id="experiencia" class="experiencia">
+    <h2 class="section-title">Formación y Experiencia</h2>
+    <div class="grid-exp">
+      <div class="exp-card" *ngFor="let exp of experiencia">
+        <span class="badge" [class.laboral]="exp.tipo === 'experiencia'">{{ exp.tipo | uppercase }}</span>
+        <h3>{{ exp.titulo }}</h3>
+        <p>{{ exp.lugar }}</p>
       </div>
     </div>
-
-    <div class="contact-container">
-      <h2 class="section-title">¿Hablamos?</h2>
-      <p>Si buscas a alguien con ganas de pringar y sumar valor desde el minuto uno, mándame un correo directo.</p>
-      <a [href]="'mailto:' + email" class="mailto-btn">
-        Contactar por Email ✉️
-      </a>
-    </div>
   </section>
-
 </main>
+
+<!-- BLOQUE 5: FOOTER CONTACTO -->
+<footer id="contacto" class="footer">
+  <h2>¿Hablamos?</h2>
+  <div class="contact-links">
+    <a [href]="'mailto:' + email" class="mailto-btn">Contactar por Email ✉️</a>
+    <a [href]="github" target="_blank" class="social-btn">GitHub</a>
+    <a [href]="linkedin" target="_blank" class="social-btn">LinkedIn</a>
+  </div>
+</footer>
