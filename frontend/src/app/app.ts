@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Proyecto {
@@ -58,11 +58,12 @@ export class AppComponent implements OnInit, OnDestroy {
     { nombre: 'MongoDB / NoSQL', nivel: 'amarillo', texto: 'Intermedio' },
     { nombre: 'React / Expo', nivel: 'verde', texto: 'Principiante' },
     { nombre: 'IA y Big Data', nivel: 'verde', texto: 'Principiante' },
-    { nombre: 'Bootstrap', nivel: 'amarillo', texto: 'Intermedio' }
+    { nombre: 'Bootstrap', nivel: 'amarillo', texto: 'Intermedio' },
+    { nombre: 'Apreender más...', nivel: 'rojo', texto: 'Experto' },
   ];
 
   experiencia = [
-    { titulo: 'Especialización en Big Data e IA', lugar: 'Actualmente', tipo: 'formación' },
+    { titulo: 'Especialización en Big Data e IA', lugar: 'IES Arcipreste de Hita', tipo: 'formación' },
     { titulo: 'Técnico Superior en Desarrollo de Aplicaciones Web', lugar: 'IES Arcipreste de Hita', tipo: 'formación' },
     { titulo: 'Bachillerato en Humanidades', lugar: 'IES Arcipreste de Hita', tipo: 'formación' },
     { titulo: 'Prácticas Desarrollo Web', lugar: 'Seriti Psicología', tipo: 'experiencia' },
@@ -110,11 +111,11 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   ];
 
-  currentSnippetIndex = 0;
+  currentSnippetIndex = signal(0);
   private intervalId: any;
 
   get currentSnippet(): CodeSnippet {
-    return this.codeSnippets[this.currentSnippetIndex];
+    return this.codeSnippets[this.currentSnippetIndex()];
   }
 
   @HostListener('window:scroll', [])
@@ -132,8 +133,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   startTerminal() {
     this.intervalId = setInterval(() => {
-      this.currentSnippetIndex = (this.currentSnippetIndex + 1) % this.codeSnippets.length;
-    }, 10000);
+      this.currentSnippetIndex.update(i => (i + 1) % this.codeSnippets.length);
+    }, 6000);
   }
 
   // Scroll suave controlado por tiempo (850ms) para todos los botones del header

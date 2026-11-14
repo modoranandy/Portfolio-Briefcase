@@ -203,7 +203,7 @@
     white-space: nowrap;
     clip-path: inset(0 100% 0 0);
     animation: paintLine 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: calc(var(--i, 0) * 0.55s);
+    animation-delay: calc(var(--i, 0) * 0.35s);
 
     .line-num {
       color: #4b3f63;
@@ -230,7 +230,7 @@
     color: #80ed99;
     opacity: 0;
     animation: fadeOutput 0.5s ease-out forwards;
-    animation-delay: 3.8s;
+    animation-delay: 2.5s;
 
     .cursor {
       color: var(--accent);
