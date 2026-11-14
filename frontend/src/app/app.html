@@ -1,20 +1,20 @@
-<!-- HEADER Sencillo -->
-<header class="navbar">
-  <div class="logo">&lt;AM/&gt;</div>
+<!-- HEADER STICKY DINÁMICO -->
+<header class="navbar" [class.scrolled]="isScrolled">
+  <a href="#" class="logo">&lt;AM<span>/</span>&gt;</a>
   <nav>
     <a href="#proyectos">Proyectos</a>
     <a href="#stack">Stack</a>
     <a href="#experiencia">Experiencia</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#contacto" class="nav-cta">Contacto</a>
   </nav>
 </header>
 
 <main class="portfolio-container">
   
-  <!-- BLOQUE 1: HERO (Texto izq + Consola der) -->
+  <!-- BLOQUE 1: HERO (Texto izq + Consola enriquecida der) -->
   <section class="hero">
     <div class="hero-left">
-      <h1 class="glitch-title">{{ nombre }}</h1>
+      <h1 class="name-fill">{{ nombre }}</h1>
       <h2 class="subtitle">{{ rol }}</h2>
       <div class="intro-box">
         <p>¡Hola! Soy Desarrollador Web Full-Stack (Técnico Superior en DAW) y actualmente curso la Especialización en Inteligencia Artificial y Big Data. Me apasiona entender los sistemas desde los cimientos, crear soluciones eficientes y meter las manos en el código hasta que todo rinda al máximo nivel.</p>
@@ -22,15 +22,33 @@
     </div>
 
     <div class="hero-right">
-      <div class="code-window">
+      <div class="code-window" (click)="nextSnippet()" title="Haz clic para cambiar de archivo">
         <div class="window-header">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="file-tab">{{ currentSnippet.fileName }}</span>
+          <span class="switch-hint">↻</span>
         </div>
+
         <div class="window-body">
-          <!-- El texto muta gracias al TS -->
-          <p class="anim-line">{{ terminalText }}<span class="cursor">_</span></p>
+          @for (snippet of [currentSnippet]; track snippet.fileName) {
+            <div class="code-block">
+              @for (line of snippet.lines; track $index) {
+                <div class="code-line" [style.padding-left.rem]="line.indent * 1.2">
+                  <span class="line-num">{{ $index + 1 }}</span>
+                  @for (token of line.tokens; track $index) {
+                    <span [ngClass]="'tok-' + token.type">{{ token.text }}</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="terminal-output">
+              <span>{{ snippet.output }}</span><span class="cursor">_</span>
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -43,7 +61,7 @@
       <div class="card" *ngFor="let p of proyectos">
         <h3>{{ p.nombre }}</h3>
         <p>{{ p.desc }}</p>
-        <a *ngIf="p.url !== '#'" [href]="p.url" target="_blank" class="card-link">Ver Proyecto ↗</a>
+        <a *ngIf="p.url" [href]="p.url" target="_blank" class="card-link">Ver Proyecto ↗</a>
       </div>
     </div>
   </section>
@@ -57,7 +75,6 @@
           <div class="flip-card-front">
             <span>{{ tech.nombre }}</span>
           </div>
-          <!-- Se asigna la clase verde, amarillo o rojo dinámicamente -->
           <div class="flip-card-back" [ngClass]="tech.nivel">
             <span class="nivel-texto">{{ tech.texto }}</span>
           </div>

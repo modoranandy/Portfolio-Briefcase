@@ -1,46 +1,204 @@
-.portfolio-container { max-width: 1200px; margin: 0 auto; padding: 2rem 5%; }
+.portfolio-container { max-width: 1200px; margin: 0 auto; padding: 1rem 5% 2rem; }
 .section-title { color: var(--accent); font-size: 2rem; margin: 4rem 0 2rem; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem; }
 
-/* NAVBAR */
+/* NAVBAR STICKY QUE SE MINIMIZA AL HACER SCROLL */
 .navbar {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.5rem 5%; background: rgba(9, 5, 14, 0.9);
-  backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
-  border-bottom: 1px solid rgba(123, 44, 191, 0.3);
-  
-  .logo { font-weight: bold; font-size: 1.5rem; color: var(--accent); }
-  nav a { color: var(--text-main); text-decoration: none; margin-left: 2rem; transition: color 0.3s; }
-  nav a:hover { color: var(--accent); }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.7rem 5%;
+  background: rgba(9, 5, 14, 0.75);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(123, 44, 191, 0.15);
+  transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+  .logo {
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: -1px;
+    transition: font-size 0.3s ease;
+
+    span { color: var(--accent); }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.25s ease, font-size 0.3s ease;
+
+      &:hover { color: var(--accent); }
+    }
+
+    .nav-cta {
+      padding: 0.45rem 1.1rem;
+      border: 1px solid var(--primary);
+      border-radius: 6px;
+      color: var(--text-main);
+      background: rgba(123, 44, 191, 0.15);
+
+      &:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+    }
+  }
+
+  /* Estado minimizado al deslizar */
+  &.scrolled {
+    padding: 0.85rem 5%;
+    background: rgba(9, 5, 14, 0.96);
+    border-bottom-color: rgba(199, 125, 255, 0.35);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.65), 0 2px 15px rgba(123, 44, 191, 0.2);
+
+    .logo { font-size: 1.35rem; }
+    nav a { font-size: 0.92rem; }
+  }
 }
 
 /* 1. HERO */
-.hero { display: flex; flex-wrap: wrap; gap: 3rem; align-items: center; min-height: 75vh; margin-top: 2rem; }
-.hero-left { flex: 1 1 500px; }
-.hero-right { flex: 1 1 400px; }
+.hero { display: flex; flex-wrap: wrap; gap: 3rem; align-items: center; min-height: 76vh; margin-top: 1.5rem; }
+.hero-left { flex: 1 1 480px; }
+.hero-right { flex: 1 1 440px; }
 
-/* Animación del nombre estático pero con brillo */
-.glitch-title {
-  font-size: 3.5rem; margin-bottom: 0.5rem;
-  background: linear-gradient(90deg, var(--text-main), var(--accent), var(--text-main));
-  background-size: 200% auto;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  animation: shine 4s linear infinite;
+/* NOMBRE CON ANIMACIÓN DE LLENADO NEÓN (1.8s) */
+.name-fill {
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #c77dff 42%,
+    rgba(199, 125, 255, 0.22) 55%,
+    rgba(199, 125, 255, 0.22) 100%
+  );
+  background-size: 230% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(199, 125, 255, 0.25));
+  animation: fillText 1.8s ease-in-out infinite alternate;
 }
-.subtitle { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 2rem; }
-.intro-box { p { line-height: 1.7; color: var(--text-muted); } }
 
-/* Consola mutante */
+.subtitle { color: var(--accent); font-size: 1.25rem; font-weight: 500; margin-bottom: 1.8rem; letter-spacing: 0.5px; }
+.intro-box {
+  background: var(--bg-surface);
+  padding: 1.5rem;
+  border-left: 3px solid var(--primary);
+  border-radius: 0 10px 10px 0;
+  p { line-height: 1.75; color: var(--text-muted); }
+}
+
+/* CONSOLA CON CLASES, OBJETOS Y RESALTADO DE SINTAXIS */
 .code-window {
-  background: #000; border-radius: 10px; border: 1px solid #333;
-  box-shadow: 0 10px 30px rgba(123, 44, 191, 0.2); font-family: 'Fira Code', monospace;
-  .window-header {
-    background: #1a1a1a; padding: 10px; display: flex; gap: 8px;
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+  background: #07040c;
+  border-radius: 12px;
+  border: 1px solid rgba(199, 125, 255, 0.25);
+  box-shadow: 0 12px 35px rgba(123, 44, 191, 0.22);
+  font-family: 'Fira Code', monospace;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
   }
+
+  .window-header {
+    background: #140b24;
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(123, 44, 191, 0.2);
+
+    .dots {
+      display: flex;
+      gap: 7px;
+      .dot { width: 11px; height: 11px; border-radius: 50%; }
+      .red { background: #ff5f56; }
+      .yellow { background: #ffbd2e; }
+      .green { background: #27c93f; }
+    }
+
+    .file-tab {
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: rgba(123, 44, 191, 0.2);
+      padding: 0.2rem 0.75rem;
+      border-radius: 5px;
+    }
+
+    .switch-hint {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  }
+
   .window-body {
-    padding: 2rem; color: var(--accent); min-height: 150px;
-    .cursor { animation: blink 1s step-end infinite; }
+    padding: 1.4rem 1.5rem;
+    min-height: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .code-block {
+    animation: codeFadeIn 0.45s ease-out;
+  }
+
+  .code-line {
+    font-size: 0.86rem;
+    line-height: 1.65;
+    white-space: nowrap;
+    overflow-x: auto;
+
+    .line-num {
+      color: #4b3f63;
+      margin-right: 1rem;
+      user-select: none;
+      font-size: 0.78rem;
+    }
+  }
+
+  /* Colores de sintaxis */
+  .tok-kw { color: #c77dff; font-weight: 500; }
+  .tok-cls { color: #ffd166; }
+  .tok-fn { color: #64dfdf; }
+  .tok-str { color: #80ed99; }
+  .tok-prop { color: #e0aaff; }
+  .tok-num { color: #ff9e00; }
+  .tok-plain { color: #e2e8f0; }
+  .tok-cm { color: #6c6382; font-style: italic; }
+
+  .terminal-output {
+    margin-top: 1.2rem;
+    padding-top: 0.8rem;
+    border-top: 1px dashed rgba(199, 125, 255, 0.2);
+    font-size: 0.8rem;
+    color: #80ed99;
+    animation: codeFadeIn 0.5s ease-out;
+
+    .cursor {
+      color: var(--accent);
+      font-weight: bold;
+      animation: blink 0.9s step-end infinite;
+    }
   }
 }
 
@@ -70,10 +228,9 @@
   display: flex; align-items: center; justify-content: center; border-radius: 8px;
   border: 1px solid rgba(123, 44, 191, 0.3); padding: 0.5rem;
 }
-.flip-card-front { background: var(--bg-surface); color: var(--text-main); font-weight: 500; font-size: 0.9rem;}
+.flip-card-front { background: var(--bg-surface); color: var(--text-main); font-weight: 500; font-size: 0.9rem; }
 .flip-card-back {
   transform: rotateY(180deg); font-weight: bold; color: #000 !important; font-size: 0.9rem;
-  /* Colores de nivel */
   &.verde { background: #27c93f; border-color: #27c93f; }
   &.amarillo { background: #ffbd2e; border-color: #ffbd2e; }
   &.rojo { background: #ff5f56; border-color: #ff5f56; }
@@ -104,6 +261,15 @@
   .social-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(199, 125, 255, 0.1); }
 }
 
-/* ANIMACIONES */
-@keyframes shine { to { background-position: 200% center; } }
+/* ANIMACIONES LIGERAS */
+@keyframes fillText {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0% 0; }
+}
+
+@keyframes codeFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes blink { 50% { opacity: 0; } }
