@@ -1,7 +1,8 @@
 .portfolio-container {
-  max-width: 1380px;
+  width: 100%;
+  max-width: 1680px;
   margin: 0 auto;
-  padding: 1rem 3% 2rem;
+  padding: 2rem 4% 3rem;
 }
 
 .section-title {
@@ -18,7 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.7rem 3%;
+  padding: 1.7rem 4%;
   background: rgba(9, 5, 14, 0.8);
   backdrop-filter: blur(12px);
   position: sticky;
@@ -69,7 +70,7 @@
   }
 
   &.scrolled {
-    padding: 0.85rem 3%;
+    padding: 0.85rem 4%;
     background: rgba(9, 5, 14, 0.96);
     border-bottom-color: rgba(199, 125, 255, 0.35);
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.65), 0 2px 15px rgba(123, 44, 191, 0.2);
@@ -81,35 +82,35 @@
 
 /* 1. HERO (BLOQUE IZQUIERDO PEGADO A LA IZQUIERDA) */
 .hero {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(420px, 0.95fr);
+  gap: 4rem;
   align-items: center;
-  min-height: 76vh;
-  margin-top: 1.5rem;
+  min-height: 78vh;
+  padding-top: 1.5rem;
 }
 
 .hero-left {
-  flex: 1 1 500px;
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding-left: 0;
 }
 
 .hero-right {
-  flex: 1 1 440px;
   min-width: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
-/* NOMBRE CON ANIMACIÓN DE LLENADO NEÓN LENTA (5s) */
+/* NOMBRE SIN RECORTE SUPERIOR Y CON LLENADO NEÓN (5s) */
 .name-fill {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.6rem, 4.5vw, 4.1rem);
   font-weight: 700;
-  margin-left: 0;
+  line-height: 1.15;
+  padding-top: 0.15rem;
   margin-bottom: 0.35rem;
   display: inline-block;
   text-align: left;
@@ -132,7 +133,6 @@
   color: var(--accent);
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   font-weight: 500;
-  margin-left: 0;
   margin-bottom: 1.6rem;
   letter-spacing: 0.5px;
   text-align: left;
@@ -141,15 +141,26 @@
 .intro-box {
   width: 100%;
   background: var(--bg-surface);
-  padding: 1.35rem 1.5rem 1.35rem 1.15rem;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.25rem;
   border-left: 3px solid var(--primary);
   border-radius: 0 10px 10px 0;
   text-align: left;
-  p { line-height: 1.75; color: var(--text-muted); font-size: 0.98rem; }
-}
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    line-height: 1.75;
+    color: var(--text-muted);
+    font-size: 0.98rem;
+  }
+}
 /* CONSOLA ESTÁTICA (SIN CLIC NI ZOOM) QUE SE PINTA LÍNEA A LÍNEA */
 .code-window {
+  width: 100%;
+  max-width: 560px;
   background: #07040c;
   border-radius: 12px;
   border: 1px solid rgba(199, 125, 255, 0.25);
@@ -161,7 +172,7 @@
 
   .window-header {
     background: #140b24;
-    padding: 0.7rem 1rem;
+    padding: 1.2rem 1.4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -368,16 +379,20 @@
 @keyframes blink { 50% { opacity: 0; } }
 
 /* RESPONSIVE: TABLET Y MÓVIL */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .hero {
+    grid-template-columns: 1fr;
     min-height: auto;
-    gap: 2rem;
-    padding-top: 0.5rem;
+    gap: 2.5rem;
+    padding-top: 1rem;
   }
 
-  .hero-left,
   .hero-right {
-    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
+
+  .code-window {
+    max-width: 100%;
   }
 }
 
