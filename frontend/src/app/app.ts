@@ -71,39 +71,39 @@ export class AppComponent implements OnInit, OnDestroy {
     { titulo: 'Operario Textil', lugar: 'Uare/Beon Fashion', tipo: 'experiencia' },
   ];
 
-  // Snippets de código dinámicos con clases, objetos y funciones
+  // Snippets de código que se pintan solos cada 10s
   codeSnippets: CodeSnippet[] = [
     {
       fileName: 'Developer.ts',
       output: '> [TS] Instance ready: Full-Stack & AI mode ON 🚀',
       lines: [
         { indent: 0, tokens: [{ text: 'class ', type: 'kw' }, { text: 'Developer', type: 'cls' }, { text: ' {', type: 'plain' }] },
-        { indent: 1, tokens: [{ text: 'profile ', type: 'prop' }, { text: '= { ', type: 'plain' }, { text: 'name', type: 'prop' }, { text: ': ', type: 'plain' }, { text: "'Andy Modoran'", type: 'str' }, { text: ', ', type: 'plain' }, { text: 'daw', type: 'prop' }, { text: ': ', type: 'plain' }, { text: 'true', type: 'num' }, { text: ' };', type: 'plain' }] },
-        { indent: 1, tokens: [{ text: 'coreStack ', type: 'prop' }, { text: '= [', type: 'plain' }, { text: "'Angular'", type: 'str' }, { text: ', ', type: 'plain' }, { text: "'Laravel'", type: 'str' }, { text: ', ', type: 'plain' }, { text: "'Docker'", type: 'str' }, { text: '];', type: 'plain' }] },
+        { indent: 1, tokens: [{ text: 'profile ', type: 'prop' }, { text: '= { ', type: 'plain' }, { text: 'name', type: 'prop' }, { text: ': ', type: 'plain' }, { text: "'Andy'", type: 'str' }, { text: ', ', type: 'plain' }, { text: 'daw', type: 'prop' }, { text: ': ', type: 'plain' }, { text: 'true', type: 'num' }, { text: ' };', type: 'plain' }] },
+        { indent: 1, tokens: [{ text: 'stack ', type: 'prop' }, { text: '= [', type: 'plain' }, { text: "'Angular'", type: 'str' }, { text: ', ', type: 'plain' }, { text: "'Laravel'", type: 'str' }, { text: ', ', type: 'plain' }, { text: "'Docker'", type: 'str' }, { text: '];', type: 'plain' }] },
         { indent: 1, tokens: [{ text: 'build', type: 'fn' }, { text: '(): ', type: 'plain' }, { text: 'void ', type: 'cls' }, { text: '{ ', type: 'plain' }, { text: 'this', type: 'kw' }, { text: '.shipCleanCode(); }', type: 'plain' }] },
         { indent: 0, tokens: [{ text: '}', type: 'plain' }] }
       ]
     },
     {
       fileName: 'ai_pipeline.py',
-      output: '> [Python] Model accuracy: 98.4% | Big Data pipeline active ⚡',
+      output: '> [Python] Model accuracy: 98.4% | Pipeline active ⚡',
       lines: [
         { indent: 0, tokens: [{ text: 'class ', type: 'kw' }, { text: 'BigDataEngine', type: 'cls' }, { text: ':', type: 'plain' }] },
         { indent: 1, tokens: [{ text: 'def ', type: 'kw' }, { text: '__init__', type: 'fn' }, { text: '(self):', type: 'plain' }] },
-        { indent: 2, tokens: [{ text: 'self.tools = {', type: 'plain' }, { text: "'ml'", type: 'str' }, { text: ': ', type: 'plain' }, { text: "'Scikit-Learn'", type: 'str' }, { text: ', ', type: 'plain' }, { text: "'data'", type: 'str' }, { text: ': ', type: 'plain' }, { text: "'Pandas'", type: 'str' }, { text: '}', type: 'plain' }] },
-        { indent: 1, tokens: [{ text: 'def ', type: 'kw' }, { text: 'train_model', type: 'fn' }, { text: '(self, dataset):', type: 'plain' }] },
-        { indent: 2, tokens: [{ text: 'return ', type: 'kw' }, { text: 'dataset.optimize(epochs=', type: 'plain' }, { text: '100', type: 'num' }, { text: ')', type: 'plain' }] }
+        { indent: 2, tokens: [{ text: 'self.tools = [', type: 'plain' }, { text: "'Scikit-Learn'", type: 'str' }, { text: ', ', type: 'plain' }, { text: "'Pandas'", type: 'str' }, { text: ']', type: 'plain' }] },
+        { indent: 1, tokens: [{ text: 'def ', type: 'kw' }, { text: 'train', type: 'fn' }, { text: '(self, data):', type: 'plain' }] },
+        { indent: 2, tokens: [{ text: 'return ', type: 'kw' }, { text: 'data.optimize(epochs=', type: 'plain' }, { text: '100', type: 'num' }, { text: ')', type: 'plain' }] }
       ]
     },
     {
       fileName: 'SystemController.php',
       output: '> [PHP 8.5] 200 OK — Response time: 12ms 🔥',
       lines: [
-        { indent: 0, tokens: [{ text: 'final class ', type: 'kw' }, { text: 'Architecture ', type: 'cls' }, { text: 'extends ', type: 'kw' }, { text: 'Controller', type: 'cls' }] },
+        { indent: 0, tokens: [{ text: 'final class ', type: 'kw' }, { text: 'Api ', type: 'cls' }, { text: 'extends ', type: 'kw' }, { text: 'Controller', type: 'cls' }] },
         { indent: 0, tokens: [{ text: '{', type: 'plain' }] },
         { indent: 1, tokens: [{ text: 'public function ', type: 'kw' }, { text: 'deploy', type: 'fn' }, { text: '(): ', type: 'plain' }, { text: 'JsonResponse', type: 'cls' }] },
         { indent: 1, tokens: [{ text: '{', type: 'plain' }] },
-        { indent: 2, tokens: [{ text: 'return ', type: 'kw' }, { text: 'response()->json([', type: 'plain' }, { text: "'status'", type: 'str' }, { text: ' => ', type: 'plain' }, { text: "'ultra_fast'", type: 'str' }, { text: ']);', type: 'plain' }] },
+        { indent: 2, tokens: [{ text: 'return ', type: 'kw' }, { text: 'response()->json([', type: 'plain' }, { text: "'ok'", type: 'str' }, { text: ' => ', type: 'plain' }, { text: 'true', type: 'num' }, { text: ']);', type: 'plain' }] },
         { indent: 1, tokens: [{ text: '}', type: 'plain' }] },
         { indent: 0, tokens: [{ text: '}', type: 'plain' }] }
       ]
@@ -132,11 +132,47 @@ export class AppComponent implements OnInit, OnDestroy {
 
   startTerminal() {
     this.intervalId = setInterval(() => {
-      this.nextSnippet();
-    }, 3800);
+      this.currentSnippetIndex = (this.currentSnippetIndex + 1) % this.codeSnippets.length;
+    }, 10000);
   }
 
-  nextSnippet() {
-    this.currentSnippetIndex = (this.currentSnippetIndex + 1) % this.codeSnippets.length;
+  // Scroll suave controlado por tiempo (850ms) para todos los botones del header
+  scrollTo(event: Event, sectionId: string) {
+    event.preventDefault();
+
+    const targetPosition =
+      sectionId === 'inicio'
+        ? 0
+        : (() => {
+            const el = document.getElementById(sectionId);
+            if (!el) return null;
+            const headerOffset = window.innerWidth <= 640 ? 105 : 75;
+            return el.getBoundingClientRect().top + window.scrollY - headerOffset;
+          })();
+
+    if (targetPosition === null) return;
+
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    const duration = 850;
+    let startTime: number | null = null;
+
+    const easeInOutCubic = (t: number): number =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
   }
 }

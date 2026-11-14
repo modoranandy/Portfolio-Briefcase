@@ -1,17 +1,17 @@
 <!-- HEADER STICKY DINÁMICO -->
 <header class="navbar" [class.scrolled]="isScrolled">
-  <a href="#" class="logo">&lt;AM<span>/</span>&gt;</a>
+  <a href="#inicio" (click)="scrollTo($event, 'inicio')" class="logo">&lt;AM<span>/</span>&gt;</a>
   <nav>
-    <a href="#proyectos">Proyectos</a>
-    <a href="#stack">Stack</a>
-    <a href="#experiencia">Experiencia</a>
-    <a href="#contacto" class="nav-cta">Contacto</a>
+    <a href="#proyectos" (click)="scrollTo($event, 'proyectos')">Proyectos</a>
+    <a href="#stack" (click)="scrollTo($event, 'stack')">Stack</a>
+    <a href="#experiencia" (click)="scrollTo($event, 'experiencia')">Experiencia</a>
+    <a href="#contacto" (click)="scrollTo($event, 'contacto')" class="nav-cta">Contacto</a>
   </nav>
 </header>
 
-<main class="portfolio-container">
+<main id="inicio" class="portfolio-container">
   
-  <!-- BLOQUE 1: HERO (Texto izq + Consola enriquecida der) -->
+  <!-- BLOQUE 1: HERO (Texto alineado a la izquierda + Consola estática derecha) -->
   <section class="hero">
     <div class="hero-left">
       <h1 class="name-fill">{{ nombre }}</h1>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="hero-right">
-      <div class="code-window" (click)="nextSnippet()" title="Haz clic para cambiar de archivo">
+      <div class="code-window">
         <div class="window-header">
           <div class="dots">
             <span class="dot red"></span>
@@ -30,14 +30,14 @@
             <span class="dot green"></span>
           </div>
           <span class="file-tab">{{ currentSnippet.fileName }}</span>
-          <span class="switch-hint">↻</span>
+          <span class="header-spacer"></span>
         </div>
 
         <div class="window-body">
           @for (snippet of [currentSnippet]; track snippet.fileName) {
             <div class="code-block">
               @for (line of snippet.lines; track $index) {
-                <div class="code-line" [style.padding-left.rem]="line.indent * 1.2">
+                <div class="code-line" [style.--i]="$index" [style.padding-left.rem]="line.indent * 1.1">
                   <span class="line-num">{{ $index + 1 }}</span>
                   @for (token of line.tokens; track $index) {
                     <span [ngClass]="'tok-' + token.type">{{ token.text }}</span>
