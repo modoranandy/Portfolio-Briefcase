@@ -73,7 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
     { titulo: 'Operario Textil', lugar: 'Uare/Beon Fashion', tipo: 'experiencia' },
   ];
 
-  // Snippets de código que se pintan solos cada 10s
+  // Snippets de código que se pintan solos
   codeSnippets: CodeSnippet[] = [
     {
       fileName: 'Developer.ts',
@@ -177,6 +177,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     requestAnimationFrame(animation);
   }
+
   // Campos del formulario de contacto
   contactForm = {
     nombre: '',

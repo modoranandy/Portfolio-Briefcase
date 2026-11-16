@@ -105,6 +105,7 @@
   </section>
 
   <!-- BLOQUE 4: EXPERIENCIA Y FORMACIÓN -->
+  <!-- BLOQUE 4: EXPERIENCIA Y FORMACIÓN -->
   <section id="experiencia" class="experiencia">
     <h2 class="section-title">Formación y Experiencia</h2>
     <div class="grid-exp">
@@ -115,20 +116,94 @@
       </div>
     </div>
   </section>
+
+  <!-- BLOQUE 5: CONTACTO ALINEADO (INFO + REDES IZQ / FORMULARIO SEGURO DER) -->
+  <section id="contacto" class="contacto">
+    <h2 class="section-title">Contacto</h2>
+
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <p class="contact-lead">
+          Si quieres ponerte en contacto conmigo para alguna oportunidad laboral o proyecto, rellena el formulario y se abrirá tu correo listo para enviar, o encuéntrame en mis redes.
+        </p>
+
+        <div class="contact-links">
+          <a [href]="github" target="_blank" rel="noopener noreferrer" class="social-btn">GitHub ↗</a>
+          <a [href]="linkedin" target="_blank" rel="noopener noreferrer" class="social-btn">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <form class="contact-form" (submit)="enviarCorreo($event)" novalidate>
+        <input
+          type="text"
+          name="website"
+          [(ngModel)]="contactForm.website"
+          tabindex="-1"
+          autocomplete="off"
+          class="hp-field"
+          aria-hidden="true"
+        />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="c-nombre">Nombre</label>
+            <input
+              id="c-nombre"
+              type="text"
+              name="nombre"
+              [(ngModel)]="contactForm.nombre"
+              placeholder="Tu nombre"
+              maxlength="80"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="c-asunto">Asunto</label>
+            <input
+              id="c-asunto"
+              type="text"
+              name="asunto"
+              [(ngModel)]="contactForm.asunto"
+              placeholder="Ej: Oferta Web Developer"
+              maxlength="120"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="c-mensaje">Mensaje</label>
+          <textarea
+            id="c-mensaje"
+            name="mensaje"
+            rows="4"
+            [(ngModel)]="contactForm.mensaje"
+            placeholder="Cuéntame en qué puedo ayudarte..."
+            maxlength="1500"
+            required
+          ></textarea>
+        </div>
+
+        <p *ngIf="formError" class="form-error">{{ formError }}</p>
+
+        <button type="submit" class="submit-btn">Enviar Correo ✉️</button>
+      </form>
+    </div>
+  </section>
 </main>
 
-<section id="contacto" class="contacto">
-  <h2 class="section-title">Contacto</h2>
-  <p>Si quieres ponerte en contacto conmigo, puedes enviarme un correo electrónico o conectarte conmigo a través de mis redes sociales.</p>
-  <div class="contact-links">
-    <a [href]="'mailto:' + email" class="mailto-btn">Contactar por Email ✉️</a>
-    <a [href]="github" target="_blank" class="social-btn">GitHub</a>
-    <a [href]="linkedin" target="_blank" class="social-btn">LinkedIn</a>
-  </div>
-</section>
-<!-- BLOQUE 5: FOOTER CONTACTO -->
+<!-- BLOQUE 6: FOOTER COMPACTO CON LINKS -->
 <footer id="footer" class="footer">
-  <h2>¿Hablamos?, espero que nos veamos pronto!</h2>
-  <div class="contact-links">
+  <div class="footer-content">
+    <p class="footer-msg">¿Hablamos? ¡Espero que nos veamos pronto!</p>
+
+    <div class="footer-links">
+      <a [href]="'mailto:' + email">{{ email }}</a>
+      <span>·</span>
+      <a [href]="github" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <span>·</span>
+      <a [href]="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
   </div>
 </footer>

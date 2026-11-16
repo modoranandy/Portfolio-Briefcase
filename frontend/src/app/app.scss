@@ -517,10 +517,28 @@
     font-weight: 500;
   }
 
-  .footer-copy {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.85rem;
-    color: var(--accent);
+  .footer-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+    }
+
+    span {
+      color: var(--text-muted);
+    }
   }
 }
 /* ANIMACIONES LIGERAS */
@@ -640,5 +658,9 @@
   .footer .footer-content {
     flex-direction: column;
     text-align: center;
+  }
+
+  .footer .footer-links {
+    justify-content: center;
   }
 }
