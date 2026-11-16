@@ -17,6 +17,7 @@
       <h1 class="name-fill">{{ nombre }}</h1>
       <h2 class="subtitle">{{ rol }}</h2>
       <div class="intro-box">
+        <h2 class="subtitle">Sobre Mí</h2>
         <p class="es">
           &iexcl;Hola! Soy T&eacute;cnico Superior en Desarrollo de Aplicaciones Web (DAW) (Cursando actualmente el curso de Especializaci&oacute;n en Big Data e Inteligencia Artificial)
           y actualmente busco una oportunidad laboral relacionada con el sector,
@@ -29,6 +30,7 @@
         </p>
       </div>
       <div class="intro-box">
+        <h2 class="subtitle">About Me</h2>
         <p class="en">
           Hi! I hold a Higher National Diploma in Web Application Development (DAW) (Now cursing the Big Data and Artificial Intelligence specialization) and I am currently looking 
           for a role in the tech industry, remaining open to all kinds of 
@@ -77,6 +79,7 @@
   <!-- BLOQUE 2: PROYECTOS -->
   <section id="proyectos" class="proyectos">
     <h2 class="section-title">Proyectos Destacados</h2>
+    <h2 class="subtitle">Algunos de mis trabajos más recientes</h2>
     <div class="grid-proyectos">
       <div class="card" *ngFor="let p of proyectos">
         <h3>{{ p.nombre }}</h3>
@@ -89,6 +92,7 @@
   <!-- BLOQUE 3: STACK TECNOLÓGICO (Flip Cards) -->
   <section id="stack" class="stack">
     <h2 class="section-title">Stack Tecnológico</h2>
+    <h2 class="subtitle">Tecnologías que manejo y mi nivel de experiencia, pasa el mouse por encima para ver más detalles (El nivel "Experto" son tecnologías que utilizo muy frecuentemente, no soy un experto en ellas como tal)</h2>
     <div class="grid-stack">
       <div class="flip-card" *ngFor="let tech of stack">
         <div class="flip-card-inner">
@@ -104,9 +108,9 @@
   </section>
 
   <!-- BLOQUE 4: EXPERIENCIA Y FORMACIÓN -->
-  <!-- BLOQUE 4: EXPERIENCIA Y FORMACIÓN -->
   <section id="experiencia" class="experiencia">
     <h2 class="section-title">Formación y Experiencia</h2>
+    <h2 class="subtitle">Mi trayectoria profesional y educativa, se añaden experiencias fuera del ambito tecnológico para dar una visión más completa de mi perfil y mostrar mi responsabilidad, adaptabilidad y capacidad de trabajo en equipo.</h2>
     <div class="grid-exp">
       <div class="exp-card" *ngFor="let exp of experiencia">
         <span class="badge" [class.laboral]="exp.tipo === 'experiencia'">{{ exp.tipo | uppercase }}</span>
@@ -123,7 +127,11 @@
     <div class="contact-wrapper">
       <div class="contact-info">
         <p class="contact-lead">
-          Si quieres ponerte en contacto conmigo para alguna oportunidad laboral o proyecto, rellena el formulario y se abrirá tu correo listo para enviar, o encuéntrame en mis redes.
+          Si quieres ponerte en contacto conmigo para alguna oportunidad laboral o proyecto, rellena el formulario y se abrirá tu 
+          correo listo para enviar, o encuéntrame en mis redes. Estoy abierto a cualquier tipo de colaboración, reto o propuesta profesional.
+          Además de responder dudas, ampliar informacion y por supuesto, recibir feedback sobre mi portfolio. ¡Gracias por tu interés!
+          Espero que nos veamos pronto.
+          Tambien puedes enviarme un correo directamente a <a [href]="'mailto:' + email">{{ email }}</a>
         </p>
 
         <div class="contact-links">
