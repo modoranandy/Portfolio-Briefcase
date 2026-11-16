@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, HostListener, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface Proyecto {
   nombre: string;
@@ -21,7 +22,7 @@ interface CodeSnippet {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit, OnDestroy {
     { nombre: 'React / Expo', nivel: 'verde', texto: 'Principiante' },
     { nombre: 'IA y Big Data', nivel: 'verde', texto: 'Principiante' },
     { nombre: 'Bootstrap', nivel: 'amarillo', texto: 'Intermedio' },
-    { nombre: 'Apreender más...', nivel: 'rojo', texto: 'Experto' },
+    { nombre: 'Aprender más...', nivel: 'rojo', texto: 'Experto' },
   ];
 
   experiencia = [
@@ -175,5 +176,54 @@ export class AppComponent implements OnInit, OnDestroy {
     };
 
     requestAnimationFrame(animation);
+  }
+  // Campos del formulario de contacto
+  contactForm = {
+    nombre: '',
+    asunto: '',
+    mensaje: '',
+    website: '' // Honeypot anti-bots
+  };
+  formError = '';
+
+  // Limpia caracteres de control, etiquetas HTML y saltos de línea peligrosos en cabeceras
+  private sanitizeInput(value: string, maxLength: number, allowNewLines = false): string {
+    let cleaned = (value || '')
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+      .replace(/[<>]/g, '');
+
+    if (!allowNewLines) {
+      cleaned = cleaned.replace(/[\r\n]+/g, ' ');
+    } else {
+      cleaned = cleaned.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    }
+
+    return cleaned.trim().slice(0, maxLength);
+  }
+
+  enviarCorreo(event: Event) {
+    event.preventDefault();
+    this.formError = '';
+
+    // Si un bot rellena el campo oculto, aborta en silencio
+    if (this.contactForm.website.trim() !== '') {
+      return;
+    }
+
+    const nombre = this.sanitizeInput(this.contactForm.nombre, 80, false);
+    const asunto = this.sanitizeInput(this.contactForm.asunto, 120, false);
+    const mensaje = this.sanitizeInput(this.contactForm.mensaje, 1500, true);
+
+    if (nombre.length < 2 || asunto.length < 3 || mensaje.length < 10) {
+      this.formError = 'Por favor, completa todos los campos correctamente antes de enviar.';
+      return;
+    }
+
+    const subjectEncoded = encodeURIComponent(`[Portfolio] ${asunto} - ${nombre}`);
+    const bodyText = `Hola Andy,\n\nSoy ${nombre}.\n\n${mensaje}\n\n---\nEnviado desde tu Portfolio Web`;
+    const bodyEncoded = encodeURIComponent(bodyText);
+
+    const mailtoUrl = `mailto:${this.email}?subject=${subjectEncoded}&body=${bodyEncoded}`;
+    window.location.href = mailtoUrl;
   }
 }
